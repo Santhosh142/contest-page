@@ -8,28 +8,28 @@ images = {
 	google : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Google_Name.svg/2560px-Google_Name.svg.png" // Kick Start, Round,
 
 }
-let getUrl = (contestName) => {
-    if(contestName.includes("ProjectEuler+")) 
+let getImageUrl = (contestName) => {
+    if(contestName.includes("hackerrank")) 
     {
         return images["hackerrank"];
     }
-    else if(contestName.includes("Abakoda") || contestName.includes("ICPC") || contestName.includes("VK") || contestName.includes("Codeforces") || contestName.includes("JCPC") || contestName.includes("Div."))
+    else if(contestName.includes("codeforces"))
     {
         return images['codeforces']
     }
-    else if(contestName.includes("AtCoder"))
+    else if(contestName.includes("atcoder"))
     {
         return images['atcoder']
     }
-    else if(contestName.includes("Amalthea") || contestName.includes("Starters") || contestName.includes("RECode"))
+    else if(contestName.includes("codechef"))
     {
         return images['codechef']
     }
-    else if(contestName.includes("Weekly") || contestName.includes("Biweekly"))
+    else if(contestName.includes("leetcode"))
     {
         return images['leetcode']
     }
-    else if(contestName.includes("Kick Start") || contestName.includes("Round"))
+    else if(contestName.includes("google"))
     {
         return images['google']
     }
@@ -58,16 +58,14 @@ p.then((response) => {
 }).then((contests) => {
     console.log(contests[0]);
     for(item in contests) {
-        // console.log(contests[item].start_time);
         let startDate = new Date(contests[item].start_time);
         let endDate = new Date(contests[item].end_time);
-        console.log(startDate);
         startDate = startDate.toLocaleDateString() + " - " + startDate.toLocaleTimeString();
         endDate = endDate.toLocaleDateString() + " - " + endDate.toLocaleTimeString();
          
         let contestName = contests[item].name;
 
-        let url = getUrl(contestName);
+        let url = getImageUrl(contests[item].url);
 
         const arr = contestName.split(" ");
 
